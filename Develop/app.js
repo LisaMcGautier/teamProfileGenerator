@@ -16,56 +16,139 @@ const util = require("util");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-function promptUser() {
-    return inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is your manager's name?"
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "What is your manager's id?"
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is your manager's email?"
-        },
-        {
-            type: "input",
-            name: "office",
-            message: "What is your manager's office number?"
-        },
-        {
-            type: "list",
-            name: "github",
-            message: "Which type of team member would you like to add? ",
-            default: [
-                "(Use arrow keys)",
-                "Engineer",
-                "Intern",
-                "I don't want to add any more team members."
-            ]
-        },
-    ]);
+const teamMembers = [];
+
+const managerQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is your manager's name?"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is your manager's id?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your manager's email?"
+    },
+    {
+        type: "input",
+        name: "officeNumber",
+        message: "What is your manager's office number?"
+    },
+    {
+        type: "list",
+        name: "teamMember",
+        message: "Which type of team member would you like to add?",
+        choices: [
+            "Engineer",
+            "Intern",
+            "I don't want to add any more team members."
+        ]
+    },
+];
+
+const engineerQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is your engineer's name?"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is your engineer's id?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your engineer's email?"
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "What is your engineer's GitHub username?"
+    },
+    {
+        type: "list",
+        name: "teamMember",
+        message: "Which type of team member would you like to add?",
+        choices: [
+            "Engineer",
+            "Intern",
+            "I don't want to add any more team members."
+        ]
+    },
+];
+
+const internQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is your intern's name?"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is your intern's id?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your intern's email?"
+    },
+    {
+        type: "input",
+        name: "school",
+        message: "What is your intern's school?"
+    },
+    {
+        type: "list",
+        name: "teamMember",
+        message: "Which type of team member would you like to add?",
+        choices: [
+            "Engineer",
+            "Intern",
+            "I don't want to add any more team members."
+        ]
+    },
+];
+
+function promptUser(questions) {
+    return inquirer.prompt(questions);
 }
 
-
-
-promptUser()
+promptUser(managerQuestions)
     .then(function (answers) {
-        const html = generateHTML(answers);
 
-        return writeFileAsync("index.html", html);
+        let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        console.log(manager.getName());
+
+        teamMembers.push(manager);
+        console.log(JSON.stringify(answers));
+
+        // if(answers.teamMember == "Engineer") {
+        //     promptUser(engineerQuestions);
+        // } else if (answers.teamMember == "Intern") {
+        //     promptUser(internQuestions);
+        // } else {
+        //     console.log(JSON.stringify(teamMembers));
+        // }
+
+        // const html = generateHTML(answers);
+        // return writeFileAsync("index.html", html);
     })
     .then(function () {
-        console.log("Successfully wrote to index.html");
+        console.log("Don't forget to write to HTML");
     })
     .catch(function (err) {
         console.log(err);
     });
+
+
 
 // and to create objects for each team member (using the correct classes as blueprints!)
 
