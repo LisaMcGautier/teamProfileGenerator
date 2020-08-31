@@ -10,8 +10,63 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
+
+const util = require("util");
+
+const writeFileAsync = util.promisify(fs.writeFile);
+
+function promptUser() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is your manager's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your manager's id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your manager's email?"
+        },
+        {
+            type: "input",
+            name: "office",
+            message: "What is your manager's office number?"
+        },
+        {
+            type: "list",
+            name: "github",
+            message: "Which type of team member would you like to add? ",
+            default: [
+                "(Use arrow keys)",
+                "Engineer",
+                "Intern",
+                "I don't want to add any more team members."
+            ]
+        },
+    ]);
+}
+
+
+
+promptUser()
+    .then(function (answers) {
+        const html = generateHTML(answers);
+
+        return writeFileAsync("index.html", html);
+    })
+    .then(function () {
+        console.log("Successfully wrote to index.html");
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
+
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
