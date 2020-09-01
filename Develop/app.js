@@ -117,7 +117,15 @@ const internQuestions = [
     },
 ];
 
-
+function appendToFile(fileName, readmeText) {
+    fs.appendFile(fileName, readmeText, function (error) {
+        if (error) {
+            console.log("Error: ", error);
+        } else {
+            console.log("start.html generated!");
+        }
+    });
+} 
 
 async function promptUser(questions) {
     return await inquirer.prompt(questions);
@@ -132,22 +140,24 @@ promptUser(managerQuestions)
         teamMembers.push(manager);
         console.log(JSON.stringify(answers));
 
+        appendToFile("start.html", "comingSoon");
+
         return answers;
 
         // const html = generateHTML(answers);
         // return writeFileAsync("index.html", html);
     })
     .then(async function (answers) {
-        if(answers.teamMember == "I don't want to add any more team members.") {
-            break;
-        } else if(answers.teamMember == "Engineer") {
-            await promptUser(engineerQuestions);
-        } else if (answers.teamMember == "Intern") {
-            await promptUser(internQuestions);
-        } else {
-            console.log("Something else");
-        }
-        console.log("Don't forget to write to HTML");
+        // if(answers.teamMember == "I don't want to add any more team members.") {
+        //     break;
+        // } else if(answers.teamMember == "Engineer") {
+        //     await promptUser(engineerQuestions);
+        // } else if (answers.teamMember == "Intern") {
+        //     await promptUser(internQuestions);
+        // } else {
+        //     console.log("Something else");
+        // }
+        // console.log("Don't forget to write to HTML");
     })
     .catch(function (err) {
         console.log(err);
@@ -162,9 +172,9 @@ promptUser(managerQuestions)
 
 
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+// After the user has input all employees desired, call the `render` function (required above) 
+// and pass in an array containing all employee objects; 
+// the `render` function will generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
