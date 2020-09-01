@@ -122,7 +122,7 @@ function appendToFile(fileName, readmeText) {
         if (error) {
             console.log("Error: ", error);
         } else {
-            console.log("start.html generated!");
+            console.log("view.txt generated!");
         }
     });
 } 
@@ -140,7 +140,7 @@ promptUser(managerQuestions)
         teamMembers.push(manager);
         console.log(JSON.stringify(answers));
 
-        appendToFile("start.html", "comingSoon");
+        appendToFile("view.txt", JSON.stringify(answers));
 
         return answers;
 
