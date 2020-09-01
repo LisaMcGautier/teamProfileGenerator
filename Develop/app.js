@@ -117,12 +117,14 @@ const internQuestions = [
     },
 ];
 
-function promptUser(questions) {
-    return inquirer.prompt(questions);
+
+
+async function promptUser(questions) {
+    return await inquirer.prompt(questions);
 }
 
 promptUser(managerQuestions)
-    .then(function (answers) {
+    .then(async function (answers) {
 
         let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         console.log(manager.getName());
@@ -130,18 +132,21 @@ promptUser(managerQuestions)
         teamMembers.push(manager);
         console.log(JSON.stringify(answers));
 
-        // if(answers.teamMember == "Engineer") {
-        //     promptUser(engineerQuestions);
-        // } else if (answers.teamMember == "Intern") {
-        //     promptUser(internQuestions);
-        // } else {
-        //     console.log(JSON.stringify(teamMembers));
-        // }
+        return answers;
 
         // const html = generateHTML(answers);
         // return writeFileAsync("index.html", html);
     })
-    .then(function () {
+    .then(async function (answers) {
+        if(answers.teamMember == "I don't want to add any more team members.") {
+            break;
+        } else if(answers.teamMember == "Engineer") {
+            await promptUser(engineerQuestions);
+        } else if (answers.teamMember == "Intern") {
+            await promptUser(internQuestions);
+        } else {
+            console.log("Something else");
+        }
         console.log("Don't forget to write to HTML");
     })
     .catch(function (err) {
@@ -151,6 +156,9 @@ promptUser(managerQuestions)
 
 
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+// Employee.js, Manager.js, Engineer.js, Intern.js
+
 
 
 

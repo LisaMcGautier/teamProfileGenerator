@@ -31,4 +31,8 @@ class Manager {
     }
 }
 
+
+// let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+// console.log(manager.getName());
+
 module.exports = Manager;
