@@ -1,1 +1,18 @@
-{"name":"Boss","id":"1","email":"boss@email.com","officeNumber":"007","teamMember":"Engineer"}
+{"name":"BOSS","id":"007","email":"boss@email.com","officeNumber":"1","teamMember":"Engineer"}
+{"name":"AG","id":"","email":"","officeNumber":"","teamMember":"Engineer"}
+{"name":"AB","id":"123","email":"email@email.com","officeNumber":"1"}
+{"name":"Nelio","id":"1234","email":"nelio@nelio.com","officeNumber":"305 786 1212"}
+{"name":"Nelio","id":"1234","email":"nelio@nelio.com","officeNumber":"305 786 1212"}
+<div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">Nelio</h2>
+        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: 1234</li>
+            <li class="list-group-item">Email: <a href="mailto:nelio@nelio.com">nelio@nelio.com</a></li>
+            <li class="list-group-item">Office number: 305 786 1212</li>
+        </ul>
+    </div>
+</div>
