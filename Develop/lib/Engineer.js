@@ -11,17 +11,17 @@ class Engineer extends Employee {
 
     }
 
-    getName() {
-        return this.name;
-    }
+    // getName() {
+    //     return this.name;
+    // }
 
-    getId() {
-        return this.id;
-    }
+    // getId() {
+    //     return this.id;
+    // }
 
-    getEmail() {
-        return this.email;
-    }
+    // getEmail() {
+    //     return this.email;
+    // }
 
     getRole() {
         return "Engineer";
