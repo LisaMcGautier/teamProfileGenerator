@@ -63,3 +63,10 @@ npm run test
 If you have any questions about the repo, open an issue or contact me directly at dlanodcm4517@gmail.com
 
 You can find more of my work at [GITHUBrepo](https://github.com/lisamcgautier)
+
+### Screenshots: 
+Passed Tests:
+![Screenshot (72)](https://user-images.githubusercontent.com/62854999/92528034-108ac480-f1f6-11ea-9dfc-697a6b5acbb6.png)
+
+HTML page:
+![Screenshot (74)](https://user-images.githubusercontent.com/62854999/92528102-31ebb080-f1f6-11ea-83d4-7df1058041c1.png)
